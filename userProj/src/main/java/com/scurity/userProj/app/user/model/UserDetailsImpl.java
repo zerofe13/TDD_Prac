@@ -1,15 +1,23 @@
 package com.scurity.userProj.app.user.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Delegate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
 public class UserDetailsImpl implements UserDetails {
     @Delegate
-    private UserEntity user;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final UserEntity user;
+    private final Collection<? extends GrantedAuthority> authorities;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

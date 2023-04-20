@@ -59,11 +59,23 @@ class UserServiceImplTest {
     @Test
     void 유저조회_실패_없음(){
         //given
-
+        Mockito.doReturn(Optional.empty()).when(userRepository).findByUserId(userId);
         //when
-
+        CustomException result = assertThrows(CustomException.class, () -> userService.getUserByUserid(userId));
         //then
+        assertThat(result.getErrorResult()).isEqualTo(ErrorResult.USER_NOT_FOUND);
 
+    }
+
+    @Test
+    void 유저조회_성공(){
+
+        //given
+        Mockito.doReturn(Optional.of(user())).when(userRepository).findByUserId(userId);
+        //when
+        UserResponseDto result = userService.getUserByUserid(userId);
+        //then
+        assertThat(result.getUserId()).isEqualTo(userId);
 
     }
 
