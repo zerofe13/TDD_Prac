@@ -1,6 +1,7 @@
 package com.scurity.userProj.securityConfig;
 
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +15,7 @@ public class SecurityConfig {
 
     private CorsFilter corsFilter;
 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
@@ -21,6 +23,7 @@ public class SecurityConfig {
                 .addFilterBefore(corsFilter,UsernamePasswordAuthenticationFilter.class)
 
         ;
+
 
         return httpSecurity.build();
     }

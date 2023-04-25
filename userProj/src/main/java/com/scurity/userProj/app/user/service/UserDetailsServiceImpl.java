@@ -24,13 +24,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username){
+    public UserDetails loadUserByUsername(String username) {
         Optional<UserEntity> optionalUser = userRepository.findByUserId(username);
         UserEntity user = optionalUser.orElseThrow(() -> new CustomException(ErrorResult.USER_NOT_FOUND));
-        return UserDetailsImpl.builder()
-                .user(user)
-                .authorities(setAuthority(user))
-                .build();
+        return new UserDetailsImpl(user,setAuthority(user));
     }
     public Collection<? extends GrantedAuthority> setAuthority(UserEntity user){
        return List.of(new SimpleGrantedAuthority(user.getRole().getValue()));

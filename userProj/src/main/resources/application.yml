@@ -1,0 +1,30 @@
+
+# Datasource
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: h2:tcp://localhost/~/userProj
+    username: sa
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+
+logging.level:
+  org.hibernate.SQL: debug
+
+
+
+jwt:
+  headers: Authorization
+  secret: YWxzZGtqYmwtc2Rma2VtbXhjLWZkYWdkc2EtZHVtZW1hc2lsLWRrbHRqa2xzZmprbHNpZWxhCgfdll34fjbnjF452DFawd123F234
+  refresh-secret: ZGZqbDJpdmtqZmlobHNsLWZqaWRlamRsYWZzaWVqZy1mZWZzZGZuamtibGRmamtzZWwtYmppa2xkamZpbGVzbmxqbGJrbHNlLWZlZmpqaTEyMzU0MDIzLXNhamtsZmplbAo
+  token-validity-in-seconds: 10
+  refresh-validity-in-seconds: 86400

@@ -11,11 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @RequiredArgsConstructor
-@AllArgsConstructor
-@Builder
-@Getter
 public class UserDetailsImpl implements UserDetails {
-    @Delegate
+
     private final UserEntity user;
     private final Collection<? extends GrantedAuthority> authorities;
     @Override
